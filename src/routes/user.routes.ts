@@ -1,14 +1,11 @@
 import { Hono } from 'hono'
-import { AppContext } from '../types/context' // ajusta la ruta si está en otro lado
 import { authMiddleware } from '../middlewares/auth.middleware'
+import { getMe } from '../controllers/user.controller'
 
-const userRoutes = new Hono<AppContext>()
+const userRoutes = new Hono()
 
 userRoutes.use('*', authMiddleware)
 
-userRoutes.get('/me', (c) => {
-  const user = c.get('user') // ✅ sin error de tipo ahora
-  return c.json({ user })
-})
+userRoutes.get('/me', getMe)
 
 export default userRoutes

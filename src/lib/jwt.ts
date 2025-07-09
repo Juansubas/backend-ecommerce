@@ -1,12 +1,12 @@
 import { sign, verify } from 'hono/jwt'
-import { JWTPayload } from 'hono/utils/jwt/types'
+import { UserJwtPayload } from '../types/auth'
 
 const secret = process.env.JWT_SECRET || 'superSecret'
 
-export const signJwt = async (payload: JWTPayload) => {
-  return await sign(payload, secret)
+export const signJwt = async ({ sub, email }: UserJwtPayload): Promise<string> => {
+  return await sign({ sub, email }, secret)
 }
 
-export const verifyJwt = async (token: string) => {
-  return await verify(token, secret)
+export const verifyJwt = async (token: string): Promise<UserJwtPayload> => {
+  return await verify(token, secret) as UserJwtPayload
 }

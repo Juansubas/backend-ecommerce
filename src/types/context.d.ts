@@ -1,13 +1,8 @@
-export type UserPayload = {
-  sub: string
-  email?: string
-  role?: string
-  exp?: number
-  iat?: number
-}
+import { JwtPayload } from 'jsonwebtoken'
+import { ContextVariableMap } from 'hono'
 
-export type AppContext = {
-  Variables: {
-    user: UserPayload
+declare module 'hono' {
+  interface ContextVariableMap {
+    user: JwtPayload & { id: string; email: string }
   }
 }
