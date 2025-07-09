@@ -1,5 +1,42 @@
-node_modules
-# Keep environment variables out of version control
+# Node.js
+node_modules/
+dist/
 .env
+.env.local
+.env.*.local
 
-/generated/prisma
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# TypeScript
+*.tsbuildinfo
+
+# Prisma
+prisma/dev.db
+prisma/dev.db-journal
+prisma/*.sqlite
+prisma/migrations/
+
+# Vitest coverage
+coverage/
+
+# IDEs
+.vscode/
+.idea/
+
+# Docker
+**/.docker
+**/docker-compose.override.yml
+
+# Optional: ignore local database dump files
+*.dump
+*.sql
+*.bak
